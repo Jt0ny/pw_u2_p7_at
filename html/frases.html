@@ -1,54 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-
 </head>
-
+ 
 <body>
-    <header></header>
-    <nav></nav>
-    <section>
-        <div id="myApp">
-            {{listaFrases}}
-            <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-                <li>5</li>
-            </ul>
-            <hr>
-            <ul>
-                <!--Arreglo de objetos-->
-                <li v-for="mifrase in listaFrases ">{{mifrase.frase}} - {{mifrase.autor}}
-                    <button>{{mifrase.autor}}</button>
-                    <P>{{mifrase.frase}}</P>
-                </li>
-
-            </ul>
-            <hr>
-            <label for="idFrase">Frase:</label>
-            <input id="idFrase" type="text">
-            <label for="idAutor">Autor</label>
-            <input  id="idAutor" type="text">
-            <button>Agregar</button>
-            <ul>
-                <!--Desestructuracion-->
-                <li v-for="{frase,autor} in listaFrases ">{{frase}} - {{autor}}
-                    <button>{{autor}}</button>
-                    <P>{{frase}}</P>
-                </li>
-
-            </ul>
-        </div>
-        <script src="../js/appfrases.js"></script>
-    </section>
-    <footer></footer>
+    <div id="myApp">
+        {{listafrases}}
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+        <hr>
+        <ul>
+            <!-- arreglo de objetos -->
+            <li v-for="mifrase in listafrases">{{mifrase.frase}} - {{mifrase.autor}}
+                <button> {{mifrase.autor}} </button>
+                <p>{{mifrase.frase}}</p>
+            </li>
+ 
+        </ul>
+        <hr>
+        <label for="idFrase">Frase:</label>
+        <input  v-model="frase" id="idFrase" type="text">
+        <p>{{frase}}</p>
+        <label for="idAutor">Autor:</label>
+        <!-- <input v-on:keypress="eventoKeyPress" v-model="autor" id="idAutor" type="text"> -->
+        <input v-on:keypress.enter="eventoKeyPressModificador" v-model="autor" id="idAutor" type="text">
+ 
+        <button v-on:click="agregarFrase">Agregar</button>
+        <button v-on:click="agregarFraseFinal">Agregar  al Final</button>
+ 
+        <ul>
+            <!-- desestructuracion de objetos -->
+            <li v-for="{frase,autor} in listafrases">{{frase}} - {{autor}}
+                <button v-if="autor!==null"> {{autor}} </button>
+                <p v-if="autor!==null">Autor: {{frase}}</p>
+            </li>
+ 
+        </ul>
+ 
+    </div>
+    <script src="../js/appfrases.js"></script>
 </body>
-
+ 
 </html>
